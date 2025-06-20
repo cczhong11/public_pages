@@ -45,8 +45,8 @@
         @apply bg-gray-100 shadow-md py-6; /* Vertical padding for the section */
       }
       .video-text-wrapper {
-        /* New: to constrain text within the full-width video section */
-        @apply container mx-auto max-w-4xl px-4;
+        /* Full width text container with padding */
+        @apply w-full px-4;
       }
       .video-player-wrapper {
         /* New: This will house the iframe and manage its aspect ratio. It will be full width. */
@@ -62,7 +62,7 @@
   <body class="bg-gray-50 text-gray-800">
     <!-- Removed p-4 md:p-8 from body, apply to containers if needed -->
 
-    <div class="container mx-auto max-w-4xl space-y-8 px-4 md:px-0 py-8">
+    <div class="w-full space-y-8 px-4 py-8">
       <!-- Added padding here -->
       <header class="text-center mb-8">
         <h1 class="text-3xl font-bold text-gray-700">
@@ -98,30 +98,28 @@
       </div>
 
       <!-- This will be full browser width -->
-      <iframe
-        width="860"
-        height="615"
-        src="https://www.youtube.com/embed/oG5zz9Sjw3E"
-        title="YouTube video player - Kilauea Volcano"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      >
-      </iframe>
+      <div class="video-player-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/oG5zz9Sjw3E"
+          title="YouTube video player - Kilauea Volcano"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <!-- This will be full browser width -->
-      <iframe
-        width="860"
-        height="615"
-        src="https://www.youtube.com/embed/BqmpkUdMtyA"
-        title="YouTube video player - Kilauea Volcano"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      >
-      </iframe>
+      <div class="video-player-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/BqmpkUdMtyA"
+          title="YouTube video player - Kilauea Volcano"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <div class="video-text-wrapper">
         <!-- Constrains caption -->
@@ -132,7 +130,7 @@
     </section>
 
     <!-- Re-open container for subsequent content -->
-    <div class="container mx-auto max-w-4xl space-y-8 px-4 md:px-0 py-8">
+    <div class="w-full space-y-8 px-4 py-8">
       <!-- Added padding here -->
       <section id="usgs-updates" class="link-section">
         <h2 class="text-xl font-semibold text-blue-700 mb-3">
