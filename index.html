@@ -4,66 +4,178 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Volcano Information</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
       body {
         font-family: "Inter", sans-serif;
+        background-color: #f9fafb;
+        color: #1f2937;
       }
       .content-section {
-        @apply bg-gray-100 p-4 rounded-lg shadow-md flex flex-col items-center;
+        background-color: #f3f4f6;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .content-section img {
-        /* For Kilauea tilt image */
-        @apply max-w-full h-auto rounded-md border border-gray-300;
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.375rem;
+        border: 1px solid #d1d5db;
       }
       .image-caption,
       .video-caption {
-        @apply text-sm text-gray-600 mt-2;
+        font-size: 0.875rem;
+        color: #4b5563;
+        margin-top: 0.5rem;
       }
       .error-message {
-        @apply text-red-500 bg-red-100 p-3 rounded-md text-center;
+        color: #ef4444;
+        background-color: #fee2e2;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        text-align: center;
       }
       .link-section {
-        @apply bg-blue-50 p-6 rounded-lg shadow-md;
+        background-color: #eff6ff;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
       }
       .link-section h2 {
-        @apply text-xl font-semibold text-blue-700 mb-3;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1d4ed8;
+        margin-bottom: 0.75rem;
       }
       .link-section p {
-        @apply text-gray-700 mb-2;
+        color: #374151;
+        margin-bottom: 0.5rem;
       }
       .link-section a.button-link {
-        @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg inline-block no-underline;
+        background-color: #3b82f6;
+        color: #ffffff;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        display: inline-block;
+        text-decoration: none;
+        transition: background-color 0.2s;
+      }
+      .link-section a.button-link:hover {
+        background-color: #2563eb;
       }
       .link-section a:not(.button-link) {
-        @apply text-blue-600 hover:text-blue-800 underline font-medium;
+        color: #2563eb;
+        text-decoration: underline;
+        font-weight: 500;
       }
-
-      /* Styles for the video container and iframe */
+      .link-section a:not(.button-link):hover {
+        color: #1e40af;
+      }
       .video-outer-container {
-        /* New: for the full-width video section background and vertical padding */
-        @apply bg-gray-100 shadow-md py-6; /* Vertical padding for the section */
-      }
-      .video-text-wrapper {
-        /* Full width text container with padding */
-        @apply w-full px-4;
+        background-color: #f3f4f6;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
       }
       .video-player-wrapper {
-        /* New: This will house the iframe and manage its aspect ratio. It will be full width. */
-        @apply relative w-full overflow-hidden;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio for a w-full container */
-        /* No max-width here, it will take the full width of .video-outer-container (which is screen width) */
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
       }
       .video-player-wrapper iframe {
-        @apply absolute top-0 left-0 w-full h-full border-none; /* Ensure it fills the wrapper, no border */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .max-w-4xl {
+        max-width: 56rem; /* 896px */
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-y-reverse: 0;
+        margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .py-8 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .mb-8 {
+        margin-bottom: 2rem;
+      }
+      .text-3xl {
+        font-size: 1.875rem;
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .text-gray-700 {
+        color: #374151;
+      }
+      .mb-4 {
+        margin-bottom: 1rem;
+      }
+      .text-xl {
+        font-size: 1.25rem;
+      }
+      .font-semibold {
+        font-weight: 600;
+      }
+      .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-y-reverse: 0;
+        margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+      }
+      .mt-4 {
+        margin-top: 1rem;
+      }
+      .mt-12 {
+        margin-top: 3rem;
+      }
+      .py-4 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .border-t {
+        border-top-width: 1px;
+      }
+      .border-gray-300 {
+        border-color: #d1d5db;
+      }
+      .text-sm {
+        font-size: 0.875rem;
+      }
+      .text-gray-500 {
+        color: #6b7280;
       }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-800">
-    <!-- Removed p-4 md:p-8 from body, apply to containers if needed -->
-
-    <div class="w-full space-y-8 px-4 py-8">
-      <!-- Added padding here -->
+  <body>
+    <div class="max-w-4xl mx-auto w-full space-y-8 px-4 py-8">
       <header class="text-center mb-8">
         <h1 class="text-3xl font-bold text-gray-700">
           Volcano Activity Information
@@ -71,7 +183,6 @@
       </header>
 
       <section id="kilauea-tilt" class="content-section">
-        <!-- This remains constrained -->
         <h2 class="text-xl font-semibold text-gray-700 mb-4">
           Kīlauea Tiltmeter Data (UWD-POC-TILT-week)
         </h2>
@@ -83,21 +194,18 @@
         <p class="image-caption">Source: USGS Volcanoes</p>
       </section>
     </div>
-    <!-- Close the first max-width container -->
 
     <!-- YouTube Video Section - Full Width -->
     <section
       id="youtube-video-fullwidth-section"
       class="video-outer-container space-y-4"
     >
-      <div class="video-text-wrapper">
-        <!-- Constrains H2 -->
+      <div class="max-w-4xl mx-auto w-full px-4">
         <h2 class="text-xl font-semibold text-gray-700">
           Kīlauea Volcano Video
         </h2>
       </div>
 
-      <!-- This will be full browser width -->
       <div class="video-player-wrapper">
         <iframe
           src="https://www.youtube.com/embed/oG5zz9Sjw3E"
@@ -109,7 +217,6 @@
         ></iframe>
       </div>
 
-      <!-- This will be full browser width -->
       <div class="video-player-wrapper">
         <iframe
           src="https://www.youtube.com/embed/BqmpkUdMtyA"
@@ -121,8 +228,7 @@
         ></iframe>
       </div>
 
-      <div class="video-text-wrapper">
-        <!-- Constrains caption -->
+      <div class="max-w-4xl mx-auto w-full px-4">
         <p class="video-caption">
           Example video of Kīlauea. You can change this in the HTML.
         </p>
@@ -130,8 +236,7 @@
     </section>
 
     <!-- Re-open container for subsequent content -->
-    <div class="w-full space-y-8 px-4 py-8">
-      <!-- Added padding here -->
+    <div class="max-w-4xl mx-auto w-full space-y-8 px-4 py-8">
       <section id="usgs-updates" class="link-section">
         <h2 class="text-xl font-semibold text-blue-700 mb-3">
           USGS Kīlauea Volcano Updates
@@ -158,10 +263,11 @@
               const contentDiv = document.getElementById(
                 "volcano-updates-content"
               );
+              // Safe innerHTML usage as data is controlled or expected format
               contentDiv.innerHTML = `
-                <div class="bg-white p-4 rounded-md shadow-sm mb-4">
-                  <h3 class="font-bold text-lg mb-2">${new Date().toLocaleDateString()}</h3>
-                  <div class="whitespace-pre-line">${data.data}</div>
+                <div style="background-color: #ffffff; padding: 1rem; border-radius: 0.375rem; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); margin-bottom: 1rem;">
+                  <h3 style="font-weight: 700; font-size: 1.125rem; margin-bottom: 0.5rem;">${new Date().toLocaleDateString()}</h3>
+                  <div style="white-space: pre-line;">${data.data}</div>
                 </div>
               `;
             })
@@ -172,7 +278,7 @@
               contentDiv.innerHTML = `
                 <div class="error-message">
                   Failed to load updates. <a href="https://www.usgs.gov/volcanoes/kilauea/volcano-updates"
-                  target="_blank" class="underline">Check USGS website directly</a>
+                  target="_blank" style="text-decoration: underline;">Check USGS website directly</a>
                 </div>
               `;
             });
